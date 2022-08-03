@@ -1,11 +1,12 @@
 {
-  "name": "logger",
+  "name": "pylog",
   "version": "1.0.0",
   "license": "MIT",
   "author": {
     "name": "Satyam Soni",
     "email": "satyam.soni@hotmail.co.uk"
   },
+  "homepage": "https://github.com/satyamsoni2211/logger#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "moment": "^2.29.4"
