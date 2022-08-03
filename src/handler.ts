@@ -46,7 +46,7 @@ class ConsoleHandler extends BaseHandler {
     };
 }
 
-class SumoHandler extends BaseHandler {
+class StreamHandler extends BaseHandler {
     /**
      * Endpoint to post data to sumo logic
      * @type {string}
@@ -82,4 +82,4 @@ class SumoHandler extends BaseHandler {
     }
 }
 
-export { ConsoleHandler, SumoHandler };
+export { ConsoleHandler, StreamHandler };

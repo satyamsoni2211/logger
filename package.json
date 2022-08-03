@@ -1,6 +1,6 @@
 {
   "name": "pylog",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "MIT",
   "author": {
     "name": "Satyam Soni",
@@ -11,7 +11,7 @@
     "axios": "^0.27.2",
     "moment": "^2.29.4"
   },
-  "main": "index.js",
+  "main": "./lib-esm/index.js",
   "types": "./declarations/index.d.ts",
   "exports": {
     "require": "./lib/index.js",
