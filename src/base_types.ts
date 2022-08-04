@@ -10,15 +10,16 @@ interface HandlerInterface {
     setLevel(level: number): void;
     filter(level: number): boolean;
 }
+
 interface LoggerInterface {
     addHandler(handler: HandlerInterface): void;
     setLevel(level: number): void;
     handle(record: RecordInterface): void;
-    debug(message: string, props?: Map<string, any>): void;
-    info(message: string, props?: Map<string, any>): void;
-    warn(message: string, props?: Map<string, any>): void;
-    error(message: string, props?: Map<string, any>): void;
-    critical(message: string, props?: Map<string, any>): void;
+    debug(message: string, props?: Record<string, any>): void;
+    info(message: string, props?: Record<string, any>): void;
+    warn(message: string, props?: Record<string, any>): void;
+    error(message: string, props?: Record<string, any>): void;
+    critical(message: string, props?: Record<string, any>): void;
 }
 interface RecordInterface {
     event: any;
