@@ -3,4 +3,6 @@ spec/
 src/
 _bundles/
 coverage/
-lib/
+declarations/
+*.json
+*.config.js
