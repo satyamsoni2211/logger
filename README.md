@@ -79,3 +79,37 @@ try {
 ```
 
 This will create a custom logger instance with provided formatters and handlers. This also has option for passing level to set the log level.
+
+### Loading into html
+
+There are two distributions released with pylog for `IIFE` and `System JS` that can be used with browser.
+
+- `IIFE` : [pylog.iife.js](pylog.iife.js).
+- `SystemJS`: [pylog.system.js](pylog.system.js).
+
+For using IIFE version, you may use it as below.
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"      crossorigin="anonymous"
+referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous"
+referrerpolicy="no-referrer"></script>
+<script src="pylog.iife.js"></script>
+<script>const l = pylog.utils.get_basic_logger(); l.info("this works");</script>
+```
+
+For using SystemJS, you may want to use it as below:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/system.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+<script type="systemjs-importmap">
+    {
+      "imports": {
+        "moment": "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js",
+        "axios": "https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      }
+    }
+</script>
+<script>System.import('./pylog.system.js').then(w => { console.log(w) });</script>
+```

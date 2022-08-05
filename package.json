@@ -9,15 +9,13 @@
   "homepage": "https://github.com/satyamsoni2211/logger#readme",
   "dependencies": {
     "axios": "^0.27.2",
-    "moment": "^2.29.4",
-    "rollup": "^2.77.2",
-    "tslib": "^2.4.0"
+    "moment": "^2.29.4"
   },
   "type": "module",
-  "main": "./index.js",
+  "main": "./index.mjs",
   "types": "./index.d.ts",
   "exports": {
-    "import": "./index.js",
+    "import": "./index.mjs",
     "require": "./index.cjs"
   },
   "scripts": {
@@ -29,17 +27,14 @@
   },
   "description": "Front End Logger Abstraction Library",
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@rollup/plugin-typescript": "^8.3.4",
+    "rollup": "^2.77.2",
+    "tslib": "^2.4.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
     "@vitest/ui": "^0.20.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
     "c8": "^7.12.0",
     "jsdocs": "^1.0.0",
-    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-terser": "^7.0.2",
     "typedoc": "^0.23.10",
