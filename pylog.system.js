@@ -29,14 +29,8 @@ System.register(['moment', 'axios'], (function (exports) {
             })(LevelTags || (LevelTags = {}));
 
             class LogRecord {
-                event;
-                level;
-                levelNo;
-                extra;
-                context_key;
-                args = [];
-                time;
                 constructor(event, levelNo, level = LevelTags.debug, time, extra = {}, context_key = "", args = []) {
+                    this.args = [];
                     this.event = event;
                     this.level = level;
                     this.time = time;
@@ -72,13 +66,15 @@ System.register(['moment', 'axios'], (function (exports) {
             };
 
             class Logger {
-                handlers = [];
-                /**
-                 * property level for handler
-                 * @type number
-                 * @default 0
-                 */
-                level = 0;
+                constructor() {
+                    this.handlers = [];
+                    /**
+                     * property level for handler
+                     * @type number
+                     * @default 0
+                     */
+                    this.level = 0;
+                }
                 addHandler(handler) {
                     this.handlers.push(handler);
                 }
@@ -148,14 +144,6 @@ System.register(['moment', 'axios'], (function (exports) {
              * Can be used to create a new Handler instance
              */
             class BaseHandler {
-                formatter;
-                /**
-                 * Level number corresponding to the log levle
-                 * of handler. By default this is 1 (debug)
-                 * This can be overridden by setLevel() method
-                 * @type {number}
-                 */
-                level;
                 /**
                  * constructor for Handler class
                  * by default it sets level to debug
@@ -247,11 +235,6 @@ System.register(['moment', 'axios'], (function (exports) {
                 ;
             }
             class StreamHandler extends BaseHandler {
-                /**
-                 * Endpoint to post data to sumo logic
-                 * @type {string}
-                 */
-                endpoint;
                 /**
                  * @constructor
                  * @param {Object} props - Props for the constructor
@@ -355,12 +338,13 @@ System.register(['moment', 'axios'], (function (exports) {
                  * @override
                  */
                 formatRecord(record) {
+                    var _a;
                     const fr = {
                         message: this.formatMessage(record),
                         timestamp: record.getIsoFormatTime(),
                         level: record.level,
                         context: record.extra,
-                        user: record.extra?.user
+                        user: (_a = record.extra) === null || _a === void 0 ? void 0 : _a.user
                     };
                     if (this.isError(record.getMessage())) {
                         fr.stack_info = this.getStack(record);

@@ -8,12 +8,12 @@ const config = [
             {
                 file: 'index.mjs',
                 format: 'es',
-                sourcemap: "inline",
+                sourcemap: true,
             },
             {
                 file: 'index.cjs',
                 format: 'cjs',
-                sourcemap: "inline",
+                sourcemap: true,
             },
             {
                 file: 'pylog.system.js',

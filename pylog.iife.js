@@ -26,14 +26,8 @@ var pylog = (function (exports, Moment, axios) {
     })(LevelTags || (LevelTags = {}));
 
     class LogRecord {
-        event;
-        level;
-        levelNo;
-        extra;
-        context_key;
-        args = [];
-        time;
         constructor(event, levelNo, level = LevelTags.debug, time, extra = {}, context_key = "", args = []) {
+            this.args = [];
             this.event = event;
             this.level = level;
             this.time = time;
@@ -69,13 +63,15 @@ var pylog = (function (exports, Moment, axios) {
     };
 
     class Logger {
-        handlers = [];
-        /**
-         * property level for handler
-         * @type number
-         * @default 0
-         */
-        level = 0;
+        constructor() {
+            this.handlers = [];
+            /**
+             * property level for handler
+             * @type number
+             * @default 0
+             */
+            this.level = 0;
+        }
         addHandler(handler) {
             this.handlers.push(handler);
         }
@@ -145,14 +141,6 @@ var pylog = (function (exports, Moment, axios) {
      * Can be used to create a new Handler instance
      */
     class BaseHandler {
-        formatter;
-        /**
-         * Level number corresponding to the log levle
-         * of handler. By default this is 1 (debug)
-         * This can be overridden by setLevel() method
-         * @type {number}
-         */
-        level;
         /**
          * constructor for Handler class
          * by default it sets level to debug
@@ -244,11 +232,6 @@ var pylog = (function (exports, Moment, axios) {
         ;
     }
     class StreamHandler extends BaseHandler {
-        /**
-         * Endpoint to post data to sumo logic
-         * @type {string}
-         */
-        endpoint;
         /**
          * @constructor
          * @param {Object} props - Props for the constructor
@@ -351,12 +334,13 @@ var pylog = (function (exports, Moment, axios) {
          * @override
          */
         formatRecord(record) {
+            var _a;
             const fr = {
                 message: this.formatMessage(record),
                 timestamp: record.getIsoFormatTime(),
                 level: record.level,
                 context: record.extra,
-                user: record.extra?.user
+                user: (_a = record.extra) === null || _a === void 0 ? void 0 : _a.user
             };
             if (this.isError(record.getMessage())) {
                 fr.stack_info = this.getStack(record);
