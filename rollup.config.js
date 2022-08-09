@@ -1,6 +1,5 @@
 import dts from "rollup-plugin-dts";
 import { nodeResolve } from "@rollup/plugin-node-resolve"
-import { terser } from "rollup-plugin-terser"
 // Contents of the file /rollup.config.js
 const config = [
     {
@@ -9,12 +8,12 @@ const config = [
             {
                 file: 'index.mjs',
                 format: 'es',
-                sourcemap: true,
+                sourcemap: "inline",
             },
             {
                 file: 'index.cjs',
                 format: 'cjs',
-                sourcemap: true,
+                sourcemap: "inline",
             },
             {
                 file: 'pylog.system.js',
@@ -32,7 +31,7 @@ const config = [
                 }
             }
         ],
-        plugins: [nodeResolve(), terser()],
+        plugins: [nodeResolve()],
         external: ["axios", "moment"]
     },
     {
